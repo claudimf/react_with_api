@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import axios from 'axios'
 import { Row, Col} from 'react-bootstrap';
 
-class Pagina extends React.Component {
+class Pagina extends Component {
   constructor(props){
     super(props)
     this.state = {

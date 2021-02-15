@@ -21,7 +21,7 @@ function Header(props) {
               href="/pagina"
               className={`${ props.location.pathname === "/pagina" ? "active" : "" }`}
             >
-              Página teste
+              Lista de estados
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
