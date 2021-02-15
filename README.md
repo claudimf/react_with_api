@@ -21,6 +21,11 @@ sudo chown -R $USER:$USER .
 1. [Criar uma aplicação react](https://github.com/claudimf/docker_react_multi_page)
 
 
+2. Instalar o [axios](https://www.npmjs.com/package/react-axios) e o [react-select](https://www.npmjs.com/package/react-select):
+```sh
+docker-compose run --rm frontend npm install axios react-select --save
+```
+
 ## Ponto de atenção:
 
 No arquivo [gitignore](https://github.com/claudimf/docker_react_multi_page/blob/main/frontend/.gitignore) retire a pasta 'node_modules', assim você evitará de ter que criar toda ver que construir sua aplicação facilitando o deploy.
@@ -56,3 +61,8 @@ docker-compose down && docker-compose up
 # Referências utilizadas
 
 [1° Docker + React Multi-Page](https://github.com/claudimf/docker_react_multi_page)
+
+[2° React select dropdown tutorial using react-select.](https://medium.com/how-to-react/react-select-dropdown-tutorial-using-react-select-51664ab8b6f3)
+
+
+[3° API do IBGE para popular o select](https://servicodados.ibge.gov.br/api/docs/localidades)
