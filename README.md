@@ -1,5 +1,3 @@
-# react_with_api
-
 # Docker + React with API
 
 👋 Olá, Seja Bem-vindo(a) ao 'Docker + React with API'(Docker + React com API).
