@@ -167,6 +167,8 @@ export default withRouter(Pagina);
 
 Abaixo segue o funcionamento:
 
+![Funcionamento](https://raw.githubusercontent.com/claudimf/react_with_api/main/funcionamento.gif)
+
 ## Ponto de atenção:
 
 No arquivo [gitignore](https://github.com/claudimf/docker_react_multi_page/blob/main/frontend/.gitignore) retire a pasta 'node_modules', assim você evitará de ter que criar toda ver que construir sua aplicação facilitando o deploy.
