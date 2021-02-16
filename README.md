@@ -24,6 +24,149 @@ sudo chown -R $USER:$USER .
 docker-compose run --rm frontend npm install axios react-select --save
 ```
 
+3. No arquivo [Pagina.jsx](https://github.com/claudimf/react_with_api/blob/main/frontend/src/components/Pagina.jsx) criar o seguinte conteúdo:
+
+```sh
+import React, { Component } from "react";
+import Select from 'react-select';
+import { withRouter } from "react-router-dom";
+import axios from 'axios'
+import { Row, Col} from 'react-bootstrap';
+
+class Pagina extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selectOptions : [],
+      id: "",
+      name: ''
+    }
+  }
+
+  async getOptions(){
+    const res = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+    const data = res.data
+
+    const options = data.map(d => ({
+      "value" : d.id,
+      "label" : d.nome
+
+    }))
+
+    this.setState({selectOptions: options})
+
+  }
+
+  handleChange(e){
+   this.setState({id:e.value, name:e.label})
+  }
+
+  componentDidMount(){
+      this.getOptions()
+  }
+
+  render() {
+    console.log(this.state.selectOptions)
+    return (
+      <Row className="no-gutters justify-content-center mt-5">
+        <Col md={12} className="text-center my-5">
+          <h5>LISTA DE ESTADOS</h5>
+        </Col>
+        <div>
+          <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
+          <p>Você selecionou o estado <strong>{this.state.name}</strong> e o id dele é <strong>{this.state.id}</strong></p>
+        </div>
+      </Row>
+    )
+  }
+}
+
+export default withRouter(Pagina);
+```
+### Explicando o código:
+
+Abaixo temos a biblioteca 'axios' para criação de um cliente HTTP para interação com as APIs:
+
+```sh
+import React, { Component } from "react";
+import Select from 'react-select';
+import { withRouter } from "react-router-dom";
+import axios from 'axios'
+import { Row, Col} from 'react-bootstrap';
+```
+Utilizaremos o construtor do react para utilizar o estado(state) para guarda o ID e o Name do elemento selecionado, também as opções disponíveis no Select:
+
+```sh
+class Pagina extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selectOptions : [],
+      id: "",
+      name: ''
+    }
+  }
+```
+
+Criaremos uma função assíncrona para carregar os dados do IBGE para o componente select:
+
+```sh
+  async getOptions(){
+    const res = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+    const data = res.data
+
+    const options = data.map(d => ({
+      "value" : d.id,
+      "label" : d.nome
+
+    }))
+
+    this.setState({selectOptions: options})
+
+  }
+```
+
+Utilizaremos o [handleChange](https://pt-br.reactjs.org/docs/forms.html) para verificar as mudanças ocorridas pelos usuário:
+
+```sh
+  handleChange(e){
+   this.setState({id:e.value, name:e.label})
+  }
+```
+
+Aqui utilizaremos o [componentDidMount](https://pt-br.reactjs.org/docs/react-component.html#componentdidmount) para montar o componente:
+
+
+```sh
+  componentDidMount(){
+      this.getOptions()
+  }
+```
+
+Por fim iremos renderizar o componente select e retornar no console o array incorporado nele:
+
+```sh
+  render() {
+    console.log(this.state.selectOptions)
+    return (
+      <Row className="no-gutters justify-content-center mt-5">
+        <Col md={12} className="text-center my-5">
+          <h5>LISTA DE ESTADOS</h5>
+        </Col>
+        <div>
+          <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
+          <p>Você selecionou o estado <strong>{this.state.name}</strong> e o id dele é <strong>{this.state.id}</strong></p>
+        </div>
+      </Row>
+    )
+  }
+}
+
+export default withRouter(Pagina);
+```
+
+Abaixo segue o funcionamento:
+
 ## Ponto de atenção:
 
 No arquivo [gitignore](https://github.com/claudimf/docker_react_multi_page/blob/main/frontend/.gitignore) retire a pasta 'node_modules', assim você evitará de ter que criar toda ver que construir sua aplicação facilitando o deploy.
