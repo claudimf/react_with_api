@@ -4,7 +4,7 @@
 
 ## Sobre o projeto:
 
-Neste tutorial iremos criar um aplicação que irá consultar uma API.
+Neste tutorial iremos criar um aplicação que irá consultar a [API do IBGE](https://servicodados.ibge.gov.br/api/v1/localidades/estados/) para popular o componente select.
 
 ### Permissões de arquivos:
 
@@ -190,7 +190,7 @@ docker-compose ps -a
 Para acessar o container da aplicação, execute:
 
 ```sh
-docker-compose run --rm web bash
+docker-compose run --rm frontend bash
 ```
 
 Para derrubar e subir a instância do docker novamente, execute:
